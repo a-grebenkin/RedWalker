@@ -11,7 +11,11 @@ namespace RedWalker.Core
         {
             services.AddScoped<IAccidentService, AccidentService>();
             services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<ILightingConditionService, LightingConditionService>();
+            services.AddScoped<IRoadWayConditionService, RoadWayConditionService>();
+            services.AddScoped<ISceneAccidentService, SceneAccidentService>();
             services.AddScoped<ITypeAccidentService, TypeAccidentService>();
+            services.AddScoped<IWeatherConditionService, WeatherConditionService>();
             return services;
         }
     }

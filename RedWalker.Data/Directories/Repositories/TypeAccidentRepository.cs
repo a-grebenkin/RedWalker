@@ -10,16 +10,15 @@ namespace RedWalker.Data.Directories.Repositories;
 
 public class TypeAccidentRepository : ITypeAccidentRepository
 {
-    public enum TypeAccident
+    private enum TypeAccident
     {
         HittingPedestrian, //Наезд на пешехода
         HittingСyclist, //Наезд на велосипедиста
         HittingWorker, //Наезд на лицо не являющееся участником дорожного движения, осуществляющего несение службы
-        HittingMeansIndividualMobility, //Наезд на средство индивидуальной мобильности (за исключением велосипеда)
-        Other //Не связан ни с пешеходом ни с велосипедистом
+        HittingMeansIndividualMobility //Наезд на средство индивидуальной мобильности (за исключением велосипеда)
     }
 
-    public static readonly Dictionary<TypeAccident,string> DictTypeAccident = new(){
+    private static readonly Dictionary<TypeAccident,string> DictTypeAccident = new(){
         {TypeAccident.HittingPedestrian,"Наезд на пешехода"},
         {TypeAccident.HittingСyclist,"Наезд на велосипедиста"},
         {TypeAccident.HittingWorker, "Наезд на рабочего"},

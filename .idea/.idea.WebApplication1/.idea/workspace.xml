@@ -12,7 +12,9 @@
     <projectFile profileName="https">WebApplication1/WebApplication1.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92e83fcc-4bfa-48e3-b5af-0a7f71457131" name="Changes" comment="" />
+    <list default="true" id="92e83fcc-4bfa-48e3-b5af-0a7f71457131" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +40,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2LfLAE4EfCgguzLN593ARuGfrx9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -209,7 +212,7 @@
       <workItem from="1676283910554" duration="718000" />
       <workItem from="1676295020886" duration="4964000" />
       <workItem from="1676304788930" duration="1709000" />
-      <workItem from="1676376228425" duration="14230000" />
+      <workItem from="1676376228425" duration="14725000" />
     </task>
     <servers />
   </component>

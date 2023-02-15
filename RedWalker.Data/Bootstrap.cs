@@ -16,7 +16,11 @@ public static class Bootstrap
     {
         services.AddScoped<IAccidentRepository, AccidentRepository>();
         services.AddScoped<IItemRepository, ItemRepository>();
+        services.AddScoped<ILightingConditionRepository, LightingConditionRepository>();
+        services.AddScoped<IRoadWayConditionRepository, RoadWayConditionRepository>();
+        services.AddScoped<ISceneAccidentRepository, SceneAccidentRepository>();
         services.AddScoped<ITypeAccidentRepository, TypeAccidentRepository>();
+        services.AddScoped<IWeatherConditionRepository, WeatherConditionRepository>();
         services.AddDbContext<RedWalkerContext>(options => options.UseSqlite(
             configuration["DataSource"]
         ));
