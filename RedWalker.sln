@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedWalker.Web", "RedWalker.Web\RedWalker.Web.csproj", "{94C9E1DF-A537-4079-8D3C-46730D24D15E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedWalker.Core", "RedWalker.Core\RedWalker.Core.csproj", "{D1600E2E-44BF-4640-AE3D-77364D5ABD6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedWalker.Data", "RedWalker.Data\RedWalker.Data.csproj", "{0046C8B1-DD50-44B6-B184-452D017C7493}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94C9E1DF-A537-4079-8D3C-46730D24D15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C9E1DF-A537-4079-8D3C-46730D24D15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C9E1DF-A537-4079-8D3C-46730D24D15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C9E1DF-A537-4079-8D3C-46730D24D15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1600E2E-44BF-4640-AE3D-77364D5ABD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1600E2E-44BF-4640-AE3D-77364D5ABD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1600E2E-44BF-4640-AE3D-77364D5ABD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1600E2E-44BF-4640-AE3D-77364D5ABD6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0046C8B1-DD50-44B6-B184-452D017C7493}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0046C8B1-DD50-44B6-B184-452D017C7493}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0046C8B1-DD50-44B6-B184-452D017C7493}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0046C8B1-DD50-44B6-B184-452D017C7493}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

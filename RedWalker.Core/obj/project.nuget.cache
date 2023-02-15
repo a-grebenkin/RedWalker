@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "iRPD9DVngUK7hBUBOgqU1FTF24yPbwZ1cSY0z0Mw7V1FD3uXhs7P3M22sGVJ3pa+CLEZGyjbSliau+2McubaCQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\24gas\\RiderProjects\\WebApplication1\\RedWalker.Core\\RedWalker.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\24gas\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.12\\microsoft.netcore.app.ref.6.0.12.nupkg.sha512",
+    "C:\\Users\\24gas\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.12\\microsoft.windowsdesktop.app.ref.6.0.12.nupkg.sha512",
+    "C:\\Users\\24gas\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.12\\microsoft.aspnetcore.app.ref.6.0.12.nupkg.sha512",
+    "C:\\Users\\24gas\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.12\\microsoft.netcore.app.host.win-x64.6.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}

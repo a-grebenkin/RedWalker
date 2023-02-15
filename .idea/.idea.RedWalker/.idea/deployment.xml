@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="test" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="test">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/WebApplication1.sln" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/RedWalker.Web.csproj" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/RedWalker.Core.csproj" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/RedWalker.Data.csproj" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/obj/Debug/net6.0/RedWalker.Core.AssemblyInfo.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/obj/Debug/net6.0/RedWalker.Core.GeneratedMSBuildEditorConfig.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Domains/Accidents/Constants.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Domains/Accidents/Accident.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Domains/Items/Services/IItemService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Domains/Items/Services/ItemService.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Domains/Items/Repositories/IItemRepository.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Domains/Items/Item.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Program.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Core/Bootstraps.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/../../../../Program Files/dotnet/sdk/7.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_6_default.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Controllers/Accidents/Dto/AccidentDto.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Controllers/Items/Dto/ItemDto.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Controllers/Items/ItemController.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Controllers/WeatherForecastController.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Properties/launchSettings.json" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/obj/Debug/net6.0/RedWalker.Web.AssemblyInfo.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/obj/Debug/net6.0/RedWalker.Web.GeneratedMSBuildEditorConfig.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Program.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Startup.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/WeatherForecast.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/appsettings.Development.json" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/appsettings.json" web="/" />
+            <mapping local="$PROJECT_DIR$/../../../../Program Files/dotnet/sdk/7.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_6_default.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Web/Accidents.db" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/obj/Debug/net6.0/RedWalker.Data.AssemblyInfo.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/obj/Debug/net6.0/RedWalker.Data.GeneratedMSBuildEditorConfig.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/Accidents/AccidentDbModel.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/Items/Repositories/ItemRepository.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/Items/ItemDbModel.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/RedWalkerContext.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/../../../../Program Files/dotnet/sdk/7.0.101/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_6_default.editorconfig" web="/" />
+            <mapping local="$PROJECT_DIR$/RedWalker.Data/Bootstrap.cs" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
