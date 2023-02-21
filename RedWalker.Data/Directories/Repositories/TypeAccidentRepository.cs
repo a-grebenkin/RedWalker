@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using RedWalker.Core.Domains.Accidents;
 using RedWalker.Core.Domains.Directories;
 using RedWalker.Core.Domains.Directories.Repositories;
@@ -10,7 +11,13 @@ namespace RedWalker.Data.Directories.Repositories;
 
 public class TypeAccidentRepository : ITypeAccidentRepository
 {
-    private enum TypeAccident
+    private readonly RedWalkerContext _context;
+
+    public TypeAccidentRepository(RedWalkerContext context)
+    {
+        _context = context;
+    }
+    /*private enum TypeAccident
     {
         HittingPedestrian, //Наезд на пешехода
         HittingСyclist, //Наезд на велосипедиста
@@ -23,32 +30,29 @@ public class TypeAccidentRepository : ITypeAccidentRepository
         {TypeAccident.HittingСyclist,"Наезд на велосипедиста"},
         {TypeAccident.HittingWorker, "Наезд на рабочего"},
         {TypeAccident.HittingMeansIndividualMobility,"Наезд на лицо передвигающееся на СИМ"}
-    };
+    };*/
 
-    public List<Directory> GetAll()
+    public Task<List<Directory>> GetAllAsync()
     {
-        return DictTypeAccident.Select(dict => new Directory
+        return _context.TypesAccident.Select(condition => new Directory
         {
-            Id = dict.Key.ToString(),
-            Name = dict.Value
-        }).ToList();
+            Id = condition.StringId,
+            Name = condition.Name
+        }).ToListAsync();
     }
     
-    public Directory GetById(string id)
+    public async Task<Directory> GetByIdAsync(string id)
     {
-        if (!Enum.TryParse(id, out TypeAccident key))
-        {
-            return null;
-        }
-        if (!DictTypeAccident.TryGetValue(key, out var typeAccident))
+        var type = await _context.TypesAccident.FirstOrDefaultAsync(condition => condition.StringId == id);
+        if (type == null)
         {
             return null;
         }
 
         return new Directory
         {
-            Id = id,
-            Name = typeAccident.ToString()
+            Id = type.StringId,
+            Name = type.Name
         };
     }
     

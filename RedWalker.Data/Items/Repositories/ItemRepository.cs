@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RedWalker.Core.Domains.Accidents;
+using RedWalker.Core.Domains.Directories;
 using RedWalker.Core.Domains.Items;
 using RedWalker.Core.Domains.Items.Repositories;
 
@@ -35,17 +36,37 @@ namespace RedWalker.Data.Items.Repositories
                     DateTime = accident.DateTime,
                     Death = accident.Death,
                     Lat = accident.Lat,
-                    Lighting = accident.Lighting,
+                    LightingDirectory = new Directory
+                    {
+                        Id = "test",
+                        Name = "test"
+                    },
                     Lon = accident.Lon,
                     Precip = accident.Precip,
-                    RoadWay = accident.RoadWay,
+                    RoadWayDirectory = new Directory
+                    {
+                        Id = "test",
+                        Name = "test"
+                    },
                     Wounded = accident.Wounded,
-                    Type = accident.Type,
+                    TypeDirectory = new Directory
+                    {
+                        Id = "test",
+                        Name = "test"
+                    },
                     Temperature = accident.Temperature,
                     Visibility = accident.Visibility,
                     Windspeed = accident.Windspeed,
-                    SceneAccident = accident.SceneAccident,
-                    Weather = accident.Weather
+                    SceneAccidentDirectory = new Directory
+                    {
+                        Id = "test",
+                        Name = "test"
+                    },
+                    WeatherDirectory = new Directory
+                    {
+                        Id = "test",
+                        Name = "test"
+                    }
                 }).ToList()
 
             }).ToListAsync();

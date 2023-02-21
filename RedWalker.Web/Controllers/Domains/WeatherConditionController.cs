@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RedWalker.Core.Domains.Directories.Services;
 using RedWalker.Core.Exceptions;
@@ -19,9 +20,9 @@ namespace RedWalker.Web.Controllers.Domains
         }
         
         [HttpGet]
-        public IEnumerable<DirectoryDto> GetAll()
+        public async Task<IEnumerable<DirectoryDto>> GetAll()
         {
-            var typeAccidents = _weatherConditionService.GetAll();
+            var typeAccidents = await _weatherConditionService.GetAllAsync();
             return typeAccidents.Select(typeAccident => new DirectoryDto
             {
                 Id = typeAccident.Id,
@@ -30,9 +31,9 @@ namespace RedWalker.Web.Controllers.Domains
         }
         
         [HttpGet("{id}")]
-        public DirectoryDto GetById(string id)
+        public async Task<DirectoryDto> GetById(string id)
         {
-            var typeAccident = _weatherConditionService.GetById(id);
+            var typeAccident = await _weatherConditionService.GetByIdAsync(id);
             if (typeAccident == null)
             {
                 throw new ValidationException("Погодные условия с указанным ID не найдены");

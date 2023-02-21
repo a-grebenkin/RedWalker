@@ -1,44 +1,49 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RedWalker.Core.Domains.Directories.Services;
 using RedWalker.Core.Exceptions;
 using RedWalker.Web.Controllers.Domains.Dto;
 
-namespace RedWalker.Web.Controllers.Domains;
-
-public class LightingConditionController : ControllerBase
+namespace RedWalker.Web.Controllers.Domains
 {
-    private readonly ILightingConditionService _lightingConditionService;
+    [ApiController]
+    [Route("[controller]")]
+    public class LightingConditionController : ControllerBase
+    {
+        private readonly ILightingConditionService _lightingConditionService;
 
-    public LightingConditionController(ILightingConditionService lightingConditionService)
-    {
-        _lightingConditionService = lightingConditionService;
-    }
-    [HttpGet]
-    public IEnumerable<DirectoryDto> GetAll()
-    {
-        var typeAccidents = _lightingConditionService.GetAll();
-        return typeAccidents.Select(typeAccident => new DirectoryDto
+        public LightingConditionController(ILightingConditionService lightingConditionService)
         {
-            Id = typeAccident.Id,
-            Name = typeAccident.Name
-        });
-    }
-        
-    [HttpGet("{id}")]
-    public DirectoryDto GetById(string id)
-    {
-        var typeAccident = _lightingConditionService.GetById(id);
-        if (typeAccident == null)
-        {
-            throw new ValidationException("Погодные условия с указанным ID не найдены");
+            _lightingConditionService = lightingConditionService;
         }
-
-        return new DirectoryDto
+        [HttpGet]
+        public async Task<IEnumerable<DirectoryDto>> GetAll()
         {
-            Id = typeAccident.Id,
-            Name = typeAccident.Name
-        };
+            var typeAccidents = await _lightingConditionService.GetAllAsync();
+            return typeAccidents.Select(typeAccident => new DirectoryDto
+            {
+                Id = typeAccident.Id,
+                Name = typeAccident.Name
+            });
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<DirectoryDto> GetById(string id)
+        {
+            var typeAccident = await _lightingConditionService.GetByIdGetAllAsync(id);
+            if (typeAccident == null)
+            {
+                throw new ValidationException("Погодные условия с указанным ID не найдены");
+            }
+
+            return new DirectoryDto
+            {
+                Id = typeAccident.Id,
+                Name = typeAccident.Name
+            };
+        }
     }
 }
+

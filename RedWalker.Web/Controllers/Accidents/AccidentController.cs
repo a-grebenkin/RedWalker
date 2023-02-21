@@ -31,17 +31,17 @@ namespace RedWalker.Web.Controllers.Accidents
                 DateTime = accident.DateTime,
                 Death = accident.Death,
                 Lat = accident.Lat,
-                Lighting = accident.Lighting,
+                Lighting = accident.LightingDirectory.Name,
                 Lon = accident.Lon,
                 Precip = accident.Precip,
-                RoadWay = accident.RoadWay,
+                RoadWay = accident.RoadWayDirectory.Name,
                 Wounded = accident.Wounded,
-                Type = accident.Type,
+                Type = accident.TypeDirectory.Name,
                 Temperature = accident.Temperature,
                 Visibility = accident.Visibility,
                 Windspeed = accident.Windspeed,
-                SceneAccident = accident.SceneAccident,
-                Weather = accident.Weather
+                SceneAccident = accident.SceneAccidentDirectory.Name,
+                Weather = accident.WeatherDirectory.Name
             });
         }
         
@@ -61,17 +61,17 @@ namespace RedWalker.Web.Controllers.Accidents
                 DateTime = accident.DateTime,
                 Death = accident.Death,
                 Lat = accident.Lat,
-                Lighting = accident.Lighting,
+                Lighting = accident.LightingDirectory.Id,
                 Lon = accident.Lon,
                 Precip = accident.Precip,
-                RoadWay = accident.RoadWay,
+                RoadWay = accident.RoadWayDirectory.Id,
                 Wounded = accident.Wounded,
-                Type = accident.Type,
+                Type = accident.TypeDirectory.Id,
                 Temperature = accident.Temperature,
                 Visibility = accident.Visibility,
                 Windspeed = accident.Windspeed,
-                SceneAccident = accident.SceneAccident,
-                Weather = accident.Weather
+                SceneAccident = accident.SceneAccidentDirectory.Id,
+                Weather = accident.WeatherDirectory.Id
             };
         }
     }

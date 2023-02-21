@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using RedWalker.Core.Domains.Directories.Repositories;
 
 namespace RedWalker.Core.Domains.Directories.Services;
@@ -12,13 +13,13 @@ public class TypeAccidentService: ITypeAccidentService
         _typeAccidentRepository = typeAccidentRepository;
     }
 
-    public List<Directory> GetAll()
+    public Task<List<Directory>> GetAllAsync()
     {
-        return _typeAccidentRepository.GetAll();
+        return _typeAccidentRepository.GetAllAsync();
     }
 
-    public Directory GetById(string id)
+    public Task<Directory> GetByIdAsync(string id)
     {
-        return _typeAccidentRepository.GetById(id);
+        return _typeAccidentRepository.GetByIdAsync(id);
     }
 }

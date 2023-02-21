@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RedWalker.Core.Domains.Directories.Repositories;
+using RedWalker.Core.Domains.Directories.Services;
 using RedWalker.Core.Exceptions;
 using RedWalker.Web.Controllers.Domains.Dto;
 
@@ -11,17 +13,17 @@ namespace RedWalker.Web.Controllers.Domains
     [Route("[controller]")]
     public class SceneAccidentController:ControllerBase
     {
-        private readonly ISceneAccidentRepository _sceneAccidentRepository;
+        private readonly ISceneAccidentService _sceneAccidentService;
 
-        public SceneAccidentController(ISceneAccidentRepository sceneAccidentRepository)
+        public SceneAccidentController(ISceneAccidentService sceneAccidentService)
         {
-            _sceneAccidentRepository = sceneAccidentRepository;
+            _sceneAccidentService = sceneAccidentService;
         }
         
         [HttpGet]
-        public IEnumerable<DirectoryDto> GetAll()
+        public async Task<IEnumerable<DirectoryDto>> GetAll()
         {
-            var typeAccidents = _sceneAccidentRepository.GetAll();
+            var typeAccidents = await _sceneAccidentService.GetAllAsync();
             return typeAccidents.Select(typeAccident => new DirectoryDto
             {
                 Id = typeAccident.Id,
@@ -30,9 +32,9 @@ namespace RedWalker.Web.Controllers.Domains
         }
         
         [HttpGet("{id}")]
-        public DirectoryDto GetById(string id)
+        public async Task<DirectoryDto> GetById(string id)
         {
-            var typeAccident = _sceneAccidentRepository.GetById(id);
+            var typeAccident = await _sceneAccidentService.GetByIdAsync(id);
             if (typeAccident == null)
             {
                 throw new ValidationException("Погодные условия с указанным ID не найдены");

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using RedWalker.Core.Domains.Directories.Repositories;
 
 namespace RedWalker.Core.Domains.Directories.Services;
@@ -11,13 +12,13 @@ public class LightingConditionService:ILightingConditionService
     {
         _lightingConditionRepository = lightingConditionRepository;
     }
-    public List<Directory> GetAll()
+    public Task<List<Directory>> GetAllAsync()
     {
-        return _lightingConditionRepository.GetAll();
+        return _lightingConditionRepository.GetAllAsync();
     }
 
-    public Directory GetById(string id)
+    public Task<Directory> GetByIdGetAllAsync(string id)
     {
-        return _lightingConditionRepository.GetById(id);
+        return _lightingConditionRepository.GetByIdAsync(id);
     }
 }

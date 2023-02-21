@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using RedWalker.Core.Domains.Directories.Repositories;
 
 namespace RedWalker.Core.Domains.Directories.Services;
@@ -11,13 +12,13 @@ public class RoadWayConditionService : IRoadWayConditionService
     {
         _roadWayConditionRepository = roadWayConditionRepository;
     }
-    public List<Directory> GetAll()
+    public Task<List<Directory>> GetAllAsync()
     {
-        return _roadWayConditionRepository.GetAll();
+        return _roadWayConditionRepository.GetAllAsync();
     }
 
-    public Directory GetById(string id)
+    public Task<Directory> GetByIdAsync(string id)
     {
-        return _roadWayConditionRepository.GetById(id);
+        return _roadWayConditionRepository.GetByIdAsync(id);
     }
 }

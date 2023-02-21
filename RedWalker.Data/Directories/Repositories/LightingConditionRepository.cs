@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using RedWalker.Core.Domains.Directories;
 using RedWalker.Core.Domains.Directories.Repositories;
 
@@ -8,7 +10,13 @@ namespace RedWalker.Data.Directories.Repositories;
 
 public class LightingConditionRepository:ILightingConditionRepository
 {
-    private enum LightingCondition
+    private readonly RedWalkerContext _context;
+
+    public LightingConditionRepository(RedWalkerContext context)
+    {
+        _context = context;
+    }
+    /*private enum LightingCondition
     {
         Daylight, // Светлое время суток
         Twilight, // Сумерки
@@ -23,31 +31,28 @@ public class LightingConditionRepository:ILightingConditionRepository
         {LightingCondition.DarkTimeNoLight, "В темное время суток, освещение отсутствует"},
         {LightingCondition.DarkTimeLightOn, "В темное время суток, освещение включено"},
         {LightingCondition.DarkTimeLightOff, "В темное время суток, освещение не включено"}
-    };
-    public List<Directory> GetAll()
+    };*/
+    public Task<List<Directory>> GetAllAsync()
     {
-        return DictLightingCondition.Select(dict => new Directory
+        return _context.LightingConditions.Select(condition => new Directory
         {
-            Id = dict.Key.ToString(),
-            Name = dict.Value
-        }).ToList();
+            Id = condition.StringId,
+            Name = condition.Name
+        }).ToListAsync();
     }
 
-    public Directory GetById(string id)
+    public async Task<Directory> GetByIdAsync(string id)
     {
-        if (!Enum.TryParse(id, out LightingCondition key))
-        {
-            return null;
-        }
-        if (!DictLightingCondition.TryGetValue(key, out var typeAccident))
+        var condition = await _context.LightingConditions.FirstOrDefaultAsync(condition => condition.StringId == id);
+        if (condition == null)
         {
             return null;
         }
 
         return new Directory
         {
-            Id = id,
-            Name = typeAccident.ToString()
+            Id = condition.StringId,
+            Name = condition.Name
         };
     }
 }

@@ -4,7 +4,7 @@ using RedWalker.Data.Accidents;
 
 namespace RedWalker.Data.Items
 {
-    [Table("Items")]
+    [Table("Item")]
     public class ItemDbModel
     {
         public int Id { get; set; }

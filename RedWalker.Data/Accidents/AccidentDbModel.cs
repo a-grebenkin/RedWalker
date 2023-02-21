@@ -2,12 +2,13 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RedWalker.Data.Directories;
 using RedWalker.Data.Items;
 
 
 namespace RedWalker.Data.Accidents
 {
-    [Table("Accidents")]
+    [Table("Accident")]
     public class AccidentDbModel
     {
         public int Id { get; set; }
@@ -18,17 +19,27 @@ namespace RedWalker.Data.Accidents
         public string Adddres { get; set; } //адрес 
         public double Lat { get; set; }
         public double Lon { get; set; }
-        public int Type { get; set; } //вид происшествия
+        public int TypeId { get; set; } //вид происшествия
+        public TypeAccidentDbModel Type { get; set; } //вид происшествия
         public DateTime DateTime { get; set; }
         public int Temperature { get; set; }
         public double Precip { get; set; } //осадки мм
         public int Visibility { get; set; } //видимость км
         public int Windspeed { get; set; } //скорость ветра км/ч
         public int Cloudcover { get; set; } //облачность %
-        public int Lighting { get; set; } //освещение
-        public int RoadWay { get; set; } //состояние дороги
-        public int SceneAccident { get; set; } //место происшествия
-        public int Weather { get; set; } //погода 
+        [Column("LightingId")]
+        public int LightingConditionDbModelId { get; set; } //освещение
+        public LightingConditionDbModel Lighting { get; set; } //освещение
+        [Column("RoadWayId")]
+        public int RoadWayConditionDbModelId { get; set; } //состояние дороги
+        public RoadWayConditionDbModel RoadWay { get; set; } //состояние дороги
+        [Column("SceneAccidentId")]
+        public int SceneAccidentDbModelId { get; set; } //место происшествия
+        public SceneAccidentDbModel SceneAccident { get; set; } //место происшествия
+        [Column("WeatherId")]
+        public int WeatherConditionDbModelId { get; set; } //погода 
+        public WeatherConditionDbModel Weather { get; set; } //погода 
+        
     }
     internal class ItemConfiguration : IEntityTypeConfiguration<AccidentDbModel>
     {
@@ -37,6 +48,26 @@ namespace RedWalker.Data.Accidents
             builder.HasOne(it => it.Item)
                 .WithMany(it => it.Accidents)
                 .HasForeignKey(it => it.ItemId);
+            
+            builder.HasOne(it => it.Lighting)
+                .WithMany(it => it.Accidents)
+                .HasForeignKey(it => it.LightingConditionDbModelId);
+            
+            builder.HasOne(it => it.RoadWay)
+                .WithMany(it => it.Accidents)
+                .HasForeignKey(it => it.RoadWayConditionDbModelId);
+            
+            builder.HasOne(it => it.SceneAccident)
+                .WithMany(it => it.Accidents)
+                .HasForeignKey(it => it.SceneAccidentDbModelId);
+            
+            builder.HasOne(it => it.Type)
+                .WithMany(it => it.Accidents)
+                .HasForeignKey(it => it.TypeId);
+            
+            builder.HasOne(it => it.Weather)
+                .WithMany(it => it.Accidents)
+                .HasForeignKey(it => it.WeatherConditionDbModelId);
         }
     }
 }
