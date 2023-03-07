@@ -23,6 +23,7 @@ namespace RedWalker.Web.Controllers.Accidents
         public async Task<IEnumerable<AccidentDto>> GetAll()
         {
             var accidents = await _accidentService.GetAllAsync();
+            
             return accidents.Select(accident => new AccidentDto
             {
                 Id = accident.Id,

@@ -3,9 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RedWalker.Core.Domains.Accidents.Repositories;
 using RedWalker.Core.Domains.Directories.Repositories;
+using RedWalker.Core.Domains.Images.Repositories;
 using RedWalker.Core.Domains.Items.Repositories;
 using RedWalker.Data.Accidents.Repositories;
 using RedWalker.Data.Directories.Repositories;
+using RedWalker.Data.Images.Repositories;
 using RedWalker.Data.Items.Repositories;
 
 namespace RedWalker.Data;
@@ -21,6 +23,7 @@ public static class Bootstrap
         services.AddScoped<ISceneAccidentRepository, SceneAccidentRepository>();
         services.AddScoped<ITypeAccidentRepository, TypeAccidentRepository>();
         services.AddScoped<IWeatherConditionRepository, WeatherConditionRepository>();
+        services.AddScoped<IImageRepository, ImageRepository>();
         services.AddDbContext<RedWalkerContext>(options => options.UseSqlite(
             configuration["DataSource"]
         ));

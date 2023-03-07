@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using RedWalker.Core.Domains.Accidents.Services;
 using RedWalker.Core.Domains.Directories.Services;
+using RedWalker.Core.Domains.Images.Services;
 using RedWalker.Core.Domains.Items.Services;
 
 namespace RedWalker.Core
@@ -16,6 +17,7 @@ namespace RedWalker.Core
             services.AddScoped<ISceneAccidentService, SceneAccidentService>();
             services.AddScoped<ITypeAccidentService, TypeAccidentService>();
             services.AddScoped<IWeatherConditionService, WeatherConditionService>();
+            services.AddScoped<IImageService, ImageService>();
             return services;
         }
     }

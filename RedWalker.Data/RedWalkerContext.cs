@@ -2,6 +2,7 @@
 using RedWalker.Core.Domains.Accidents;
 using RedWalker.Data.Accidents;
 using RedWalker.Data.Directories;
+using RedWalker.Data.Images;
 using RedWalker.Data.Items;
 using RedWalker.Data.Items.Repositories;
 
@@ -16,6 +17,7 @@ namespace RedWalker.Data
         public DbSet<TypeAccidentDbModel> TypesAccident { get; set; }
         public DbSet<WeatherConditionDbModel> WeatherConditions { get; set; }
         public DbSet<AccidentDbModel> Accidents { get; set; }
+        public DbSet<ImageDbModel> Images { get; set; }
         public RedWalkerContext(DbContextOptions options) : base(options)
         {
             
