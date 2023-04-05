@@ -21,7 +21,22 @@ public class ItemTypeRepository:IItemTypeRepository
         return _context.ItemTypes.Select(item => new Directory
         {
             Id = item.StringId,
-            Name = "item.Name"
+            Name = item.Name
         }).ToListAsync();
+    }
+    
+    public async Task<Directory> GetByIdAsync(string id)
+    {
+        var itemType = await _context.ItemTypes.FirstOrDefaultAsync(condition => condition.StringId == id);
+        if (itemType == null)
+        {
+            return null;
+        }
+
+        return new Directory
+        {
+            Id = itemType.StringId,
+            Name = itemType.Name
+        };
     }
 }

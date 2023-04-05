@@ -6,4 +6,5 @@ namespace RedWalker.Core.Domains.Directories.Repositories;
 public interface IItemTypeRepository
 {
     public Task<List<Directory>> GetAllAsync();
+    public Task<Directory> GetByIdAsync(string id);
 }

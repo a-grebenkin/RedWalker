@@ -16,4 +16,9 @@ public class ItemTypeService:IItemTypeService
     {
         return _itemTypeRepository.GetAllAsync();
     }
+    
+    public Task<Directory> GetByIdAsync(string id)
+    {
+        return _itemTypeRepository.GetByIdAsync(id);
+    }
 }

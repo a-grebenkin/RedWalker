@@ -32,7 +32,7 @@ namespace RedWalker.Web.Controllers.Domains
         [HttpGet("{id}")]
         public async Task<DirectoryDto> GetById(string id)
         {
-            var typeAccident = await _lightingConditionService.GetByIdGetAllAsync(id);
+            var typeAccident = await _lightingConditionService.GetByIdAsync(id);
             if (typeAccident == null)
             {
                 throw new ValidationException("Погодные условия с указанным ID не найдены");

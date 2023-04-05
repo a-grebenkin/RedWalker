@@ -17,7 +17,7 @@ public class LightingConditionService:ILightingConditionService
         return _lightingConditionRepository.GetAllAsync();
     }
 
-    public Task<Directory> GetByIdGetAllAsync(string id)
+    public Task<Directory> GetByIdAsync(string id)
     {
         return _lightingConditionRepository.GetByIdAsync(id);
     }

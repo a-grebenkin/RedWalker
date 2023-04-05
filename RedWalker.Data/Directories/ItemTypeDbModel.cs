@@ -9,6 +9,6 @@ public class ItemTypeDbModel
 {
     public int Id { get; set; }
     public string StringId { get; set; }
-    //public string Name{ get; set; }
+    public string Name{ get; set; }
     public List<ItemDbModel> Items { get; set; }
 }
