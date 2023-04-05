@@ -10,29 +10,29 @@ namespace RedWalker.Web.Controllers.Domains
 {
     [ApiController]
     [Route("[controller]")]
-    public class TypeAccidentController: ControllerBase
+    public class AccidentTypeController: ControllerBase
     {
-        private readonly ITypeAccidentService _typeAccidentService;
+        private readonly IAccidentTypeService _accidentTypeService;
 
-        public TypeAccidentController(ITypeAccidentService typeAccidentService)
+        public AccidentTypeController(IAccidentTypeService accidentTypeService)
         {
-            _typeAccidentService = typeAccidentService;
+            _accidentTypeService = accidentTypeService;
         }
 
         [HttpGet]
         public async Task<IEnumerable<DirectoryDto>> GetAll()
         {
-            var typeAccidents = await _typeAccidentService.GetAllAsync();
-            return typeAccidents.Select(typeAccident => new DirectoryDto
+            var accidentTypes = await _accidentTypeService.GetAllAsync();
+            return accidentTypes.Select(accidentType => new DirectoryDto
             {
-                Id = typeAccident.Id,
-                Name = typeAccident.Name
+                Id = accidentType.Id,
+                Name = accidentType.Name
             });
         }
         [HttpGet("{id}")]
         public async Task<DirectoryDto> GetById(string id)
         {
-            var typeAccident = await _typeAccidentService.GetByIdAsync(id);
+            var typeAccident = await _accidentTypeService.GetByIdAsync(id);
             if (typeAccident == null)
             {
                 throw new ValidationException("Тип происшествия с указанным ID не найден");

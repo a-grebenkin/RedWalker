@@ -32,7 +32,13 @@ namespace RedWalker.Web.Controllers.Items
                 RLon = item.RLon,
                 Wounded = item.Accidents.Sum(x=>x.Wounded),
                 Death = item.Accidents.Sum(x=>x.Death),
-                AccidentsId = item.Accidents.Select(accident => accident.Id).ToList()
+                Accidents = item.Accidents.Select(accident => new AccidentShortDto
+                {
+                    Id = accident.Id,
+                    Death = accident.Death,
+                    Wounded = accident.Wounded,
+                    DateTime = accident.DateTime
+                }).ToList()
             });
         }
     }

@@ -12,8 +12,8 @@ namespace RedWalker.Data.Items
     {
         public int Id { get; set; }
         [Column ("Type")]
-        public int TypeId { get; set; }
-        public TypeItemDbModel Type { get; set; }
+        public int TypeItemId { get; set; }
+        public ItemTypeDbModel TypeItem { get; set; }
         public double Lat { get; set; }
         public double Lon { get; set; }
         public double RLat { get; set; }
@@ -25,9 +25,9 @@ namespace RedWalker.Data.Items
     {
         public void Configure(EntityTypeBuilder<ItemDbModel> builder)
         {
-            builder.HasOne(it => it.Type)
+            builder.HasOne(it => it.TypeItem)
                 .WithMany(it => it.Items)
-                .HasForeignKey(it => it.TypeId);
+                .HasForeignKey(it => it.TypeItemId);
         }
     }
 

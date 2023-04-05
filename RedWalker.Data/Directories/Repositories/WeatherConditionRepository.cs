@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using RedWalker.Core.Domains.Accidents;
 using RedWalker.Core.Domains.Directories;
 using RedWalker.Core.Domains.Directories.Repositories;
 

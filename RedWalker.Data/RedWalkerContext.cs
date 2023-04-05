@@ -14,10 +14,12 @@ namespace RedWalker.Data
         public DbSet<LightingConditionDbModel> LightingConditions { get; set; }
         public DbSet<RoadWayConditionDbModel> RoadWayConditions { get; set; }
         public DbSet<SceneAccidentDbModel> SceneAccidents { get; set; }
-        public DbSet<TypeAccidentDbModel> TypesAccident { get; set; }
+        public DbSet<AccidentTypeDbModel> AccidentTypes { get; set; }
+        public DbSet<ItemTypeDbModel> ItemTypes { get; set; }
         public DbSet<WeatherConditionDbModel> WeatherConditions { get; set; }
         public DbSet<AccidentDbModel> Accidents { get; set; }
         public DbSet<ImageDbModel> Images { get; set; }
+
         public RedWalkerContext(DbContextOptions options) : base(options)
         {
             

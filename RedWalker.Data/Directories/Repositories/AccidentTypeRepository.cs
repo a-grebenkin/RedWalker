@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using RedWalker.Core.Domains.Accidents;
 using RedWalker.Core.Domains.Directories;
 using RedWalker.Core.Domains.Directories.Repositories;
 
 namespace RedWalker.Data.Directories.Repositories;
 
-public class TypeAccidentRepository : ITypeAccidentRepository
+public class AccidentTypeRepository : IAccidentTypeRepository
 {
     private readonly RedWalkerContext _context;
 
-    public TypeAccidentRepository(RedWalkerContext context)
+    public AccidentTypeRepository(RedWalkerContext context)
     {
         _context = context;
     }
@@ -34,7 +32,7 @@ public class TypeAccidentRepository : ITypeAccidentRepository
 
     public Task<List<Directory>> GetAllAsync()
     {
-        return _context.TypesAccident.Select(condition => new Directory
+        return _context.AccidentTypes.Select(condition => new Directory
         {
             Id = condition.StringId,
             Name = condition.Name
@@ -43,7 +41,7 @@ public class TypeAccidentRepository : ITypeAccidentRepository
     
     public async Task<Directory> GetByIdAsync(string id)
     {
-        var type = await _context.TypesAccident.FirstOrDefaultAsync(condition => condition.StringId == id);
+        var type = await _context.AccidentTypes.FirstOrDefaultAsync(condition => condition.StringId == id);
         if (type == null)
         {
             return null;

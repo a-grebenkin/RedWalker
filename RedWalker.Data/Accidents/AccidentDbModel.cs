@@ -19,8 +19,9 @@ namespace RedWalker.Data.Accidents
         public string Adddres { get; set; } //адрес 
         public double Lat { get; set; }
         public double Lon { get; set; }
-        public int TypeId { get; set; } //вид происшествия
-        public TypeAccidentDbModel Type { get; set; } //вид происшествия
+        [Column("TypeId")]
+        public int AccidentTypeId { get; set; } //вид происшествия
+        public AccidentTypeDbModel AccidentType { get; set; } //вид происшествия
         public DateTime DateTime { get; set; }
         public int Temperature { get; set; }
         public double Precip { get; set; } //осадки мм
@@ -61,10 +62,10 @@ namespace RedWalker.Data.Accidents
                 .WithMany(it => it.Accidents)
                 .HasForeignKey(it => it.SceneAccidentDbModelId);
             
-            builder.HasOne(it => it.Type)
+            /*builder.HasOne(it => it.AccidentType)
                 .WithMany(it => it.Accidents)
-                .HasForeignKey(it => it.TypeId);
-            
+                .HasForeignKey(it => it.AccidentTypeId);
+            */
             builder.HasOne(it => it.Weather)
                 .WithMany(it => it.Accidents)
                 .HasForeignKey(it => it.WeatherConditionDbModelId);

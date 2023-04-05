@@ -23,7 +23,7 @@ namespace RedWalker.Data.Items.Repositories
             return _context.Items.Select(item=> new Item
             {
                 Id = item.Id,
-                Type = item.Type.StringId,
+                Type = item.TypeItem.StringId,
                 Lat = item.Lat,
                 Lon = item.Lon,
                 RLat = item.RLat,

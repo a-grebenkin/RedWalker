@@ -13,7 +13,7 @@ namespace WebApplication.Controllers.Items.Dto
         public double RLon { get; set; }
         public double Wounded { get; set; }
         public double Death { get; set; }
-        public List<int> AccidentsId { get; set; }
+        public List<AccidentShortDto> Accidents { get; set; }
     }
 }
 

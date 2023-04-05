@@ -23,7 +23,7 @@ public class AccidentRepository:IAccidentRepository
             Include(a=>a.Lighting).
             Include(a=>a.RoadWay).
             Include(a=>a.SceneAccident).
-            Include(a=>a.Type).
+            Include(a=>a.AccidentType).
             Include(a=>a.Weather).
             Select(accident => new Accident
         {
@@ -48,8 +48,8 @@ public class AccidentRepository:IAccidentRepository
             Wounded = accident.Wounded,
             TypeDirectory = new Directory
             {
-                Id = accident.Type.StringId,
-                Name = accident.Type.Name
+                Id = accident.AccidentType.StringId,
+                Name = accident.AccidentType.Name
             },
             Temperature = accident.Temperature,
             Visibility = accident.Visibility,
@@ -73,7 +73,7 @@ public class AccidentRepository:IAccidentRepository
             Include(a=>a.Lighting).
             Include(a=>a.RoadWay).
             Include(a=>a.SceneAccident).
-            Include(a=>a.Type).
+            Include(a=>a.AccidentType).
             Include(a=>a.Weather).
             FirstOrDefaultAsync(a => a.Id == id);
 
@@ -105,8 +105,8 @@ public class AccidentRepository:IAccidentRepository
             Wounded = accident.Wounded,
             TypeDirectory = new Directory
             {
-                Id = accident.Type.StringId,
-                Name = accident.Type.Name
+                Id = accident.AccidentType.StringId,
+                Name = accident.AccidentType.Name
             },
             Temperature = accident.Temperature,
             Visibility = accident.Visibility,

@@ -25,7 +25,7 @@ public class ImageRepository:IImageRepository
         }
         return new Image
         {
-            Id = "Test",
+            Id = id,
             Path = image.Path,
         };
     }

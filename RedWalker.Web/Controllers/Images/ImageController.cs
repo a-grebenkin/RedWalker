@@ -25,7 +25,8 @@ public class ImageController: ControllerBase
         {
             throw new ValidationException("Изображение с указанным ID не найдено");
         }
-        return PhysicalFile(image.Path, "image/jpg");
+        var tmp =  PhysicalFile(image.Path, "image/jpg");
+        return tmp;
     }
 
 }
