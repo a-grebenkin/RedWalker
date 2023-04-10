@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RedWalker.Core.Domains.Items.Services;
+using RedWalker.Web.Controllers.Items.Dto;
 using WebApplication.Controllers.Accidents.Dto;
 using WebApplication.Controllers.Items.Dto;
 
@@ -37,7 +38,16 @@ namespace RedWalker.Web.Controllers.Items
                     Id = accident.Id,
                     Death = accident.Death,
                     Wounded = accident.Wounded,
-                    DateTime = accident.DateTime
+                    DateTime = accident.DateTime,
+                    Temperature = accident.Temperature,
+                    Precip = accident.Precip,
+                    Visibility = accident.Visibility,
+                    Windspeed = accident.Windspeed,
+                    Cloudcover = accident.Cloudcover,
+                    AccidentType = accident.TypeDirectory.Id,
+                    Lighting = accident.LightingDirectory.Id,
+                    RoadWay = accident.RoadWayDirectory.Id,
+                    Weather = accident.WeatherDirectory.Id,
                 }).ToList()
             });
         }

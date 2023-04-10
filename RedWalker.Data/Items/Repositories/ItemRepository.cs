@@ -20,8 +20,19 @@ namespace RedWalker.Data.Items.Repositories
         }
         public Task<List<Item>> GetAllAsync()
         {
-            return _context.Items.Select(item=> new Item
-            {
+            return _context.Items.
+                Include(i=>i.Accidents).
+                ThenInclude(a=>a.Lighting).
+                Include(i=>i.Accidents).
+                ThenInclude(a=>a.RoadWay).
+                Include(i=>i.Accidents).
+                ThenInclude(a=>a.SceneAccident).
+                Include(i=>i.Accidents).
+                ThenInclude(a=>a.AccidentType).
+                Include(i=>i.Accidents).
+                ThenInclude(a=>a.Weather).
+                Select(item=> new Item 
+                {
                 Id = item.Id,
                 Type = item.TypeItem.StringId,
                 Lat = item.Lat,
@@ -38,34 +49,34 @@ namespace RedWalker.Data.Items.Repositories
                     Lat = accident.Lat,
                     LightingDirectory = new Directory
                     {
-                        Id = "test",
-                        Name = "test"
+                        Id = accident.Lighting.StringId,
+                        Name = accident.Lighting.Name
                     },
                     Lon = accident.Lon,
                     Precip = accident.Precip,
                     RoadWayDirectory = new Directory
                     {
-                        Id = "test",
-                        Name = "test"
+                        Id = accident.RoadWay.StringId,
+                        Name = accident.RoadWay.Name
                     },
                     Wounded = accident.Wounded,
                     TypeDirectory = new Directory
                     {
-                        Id = "test",
-                        Name = "test"
+                        Id = accident.AccidentType.StringId,
+                        Name = accident.AccidentType.Name
                     },
                     Temperature = accident.Temperature,
                     Visibility = accident.Visibility,
                     Windspeed = accident.Windspeed,
                     SceneAccidentDirectory = new Directory
                     {
-                        Id = "test",
-                        Name = "test"
+                        Id = accident.SceneAccident.StringId,
+                        Name = accident.SceneAccident.Name
                     },
                     WeatherDirectory = new Directory
                     {
-                        Id = "test",
-                        Name = "test"
+                        Id = accident.Weather.StringId,
+                        Name = accident.Weather.Name
                     }
                 }).ToList()
 

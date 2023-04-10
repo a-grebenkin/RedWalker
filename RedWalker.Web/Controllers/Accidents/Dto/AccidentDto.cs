@@ -9,7 +9,7 @@ namespace WebApplication.Controllers.Accidents.Dto
         public string Adddres { get; set; } //адрес 
         public double Lat { get; set; }
         public double Lon { get; set; }
-        public string Type { get; set; } //вид происшествия
+        public string AccidentType { get; set; } //вид происшествия
         public DateTime DateTime { get; set; }
         public int Temperature { get; set; }
         public double Precip { get; set; } //осадки мм
