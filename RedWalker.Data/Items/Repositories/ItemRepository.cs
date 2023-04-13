@@ -30,7 +30,7 @@ namespace RedWalker.Data.Items.Repositories
                 Include(i=>i.Accidents).
                 ThenInclude(a=>a.AccidentType).
                 Include(i=>i.Accidents).
-                ThenInclude(a=>a.Weather).
+                ThenInclude(a=>a.WeatherCondition).
                 Select(item=> new Item 
                 {
                 Id = item.Id,
@@ -75,8 +75,8 @@ namespace RedWalker.Data.Items.Repositories
                     },
                     WeatherDirectory = new Directory
                     {
-                        Id = accident.Weather.StringId,
-                        Name = accident.Weather.Name
+                        Id = accident.WeatherCondition.StringId,
+                        Name = accident.WeatherCondition.Name
                     }
                 }).ToList()
 

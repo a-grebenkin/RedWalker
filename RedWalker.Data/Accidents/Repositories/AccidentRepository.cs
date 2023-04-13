@@ -24,7 +24,7 @@ public class AccidentRepository:IAccidentRepository
             Include(a=>a.RoadWay).
             Include(a=>a.SceneAccident).
             Include(a=>a.AccidentType).
-            Include(a=>a.Weather).
+            Include(a=>a.WeatherCondition).
             Select(accident => new Accident
         {
             Id = accident.Id,
@@ -61,8 +61,8 @@ public class AccidentRepository:IAccidentRepository
             },
             WeatherDirectory = new Directory
             {
-                Id = accident.Weather.StringId,
-                Name = accident.Weather.Name
+                Id = accident.WeatherCondition.StringId,
+                Name = accident.WeatherCondition.Name
             }
         }).ToListAsync();
     }
@@ -74,7 +74,7 @@ public class AccidentRepository:IAccidentRepository
             Include(a=>a.RoadWay).
             Include(a=>a.SceneAccident).
             Include(a=>a.AccidentType).
-            Include(a=>a.Weather).
+            Include(a=>a.WeatherCondition).
             FirstOrDefaultAsync(a => a.Id == id);
 
         if (accident == null)
@@ -118,8 +118,8 @@ public class AccidentRepository:IAccidentRepository
             },
             WeatherDirectory = new Directory
             {
-                Id = accident.Weather.StringId,
-                Name = accident.Weather.Name
+                Id = accident.WeatherCondition.StringId,
+                Name = accident.WeatherCondition.Name
             }
         };
     }

@@ -39,7 +39,7 @@ namespace RedWalker.Data.Accidents
         public SceneAccidentDbModel SceneAccident { get; set; } //место происшествия
         [Column("WeatherId")]
         public int WeatherConditionDbModelId { get; set; } //погода 
-        public WeatherConditionDbModel Weather { get; set; } //погода 
+        public WeatherConditionDbModel WeatherCondition { get; set; } //погода 
         
     }
     internal class ItemConfiguration : IEntityTypeConfiguration<AccidentDbModel>
@@ -66,7 +66,7 @@ namespace RedWalker.Data.Accidents
                 .WithMany(it => it.Accidents)
                 .HasForeignKey(it => it.AccidentTypeId);
             */
-            builder.HasOne(it => it.Weather)
+            builder.HasOne(it => it.WeatherCondition)
                 .WithMany(it => it.Accidents)
                 .HasForeignKey(it => it.WeatherConditionDbModelId);
         }

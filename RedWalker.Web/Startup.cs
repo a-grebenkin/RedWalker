@@ -12,7 +12,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RedWalker.Core;
+using RedWalker.Core.Domains.GeoCoordinates;
+using RedWalker.Core.Domains.Weathers;
 using RedWalker.Data;
+using RedWalker.Data.Weathers;
 
 namespace RedWalker.Web
 {
@@ -33,6 +36,9 @@ namespace RedWalker.Web
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RedWalker.Web", Version = "v1" });
             });
+            services.AddScoped<IWeatherForecast, WeatherForecast>();
+            services.AddScoped<IWeatherApproximator, WeatherApproximator>();
+            services.AddScoped<IGeoCoordinatesComparer, GeoCoordinatesComparer>();
             services.AddCore();
             services.AddData(Configuration);
         }

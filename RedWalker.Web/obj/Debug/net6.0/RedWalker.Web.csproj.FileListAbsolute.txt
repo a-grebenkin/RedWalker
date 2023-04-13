@@ -80,3 +80,4 @@ C:\Users\24gas\RiderProjects\WebApplication1\RedWalker.Web\obj\Debug\net6.0\refi
 C:\Users\24gas\RiderProjects\WebApplication1\RedWalker.Web\obj\Debug\net6.0\RedWalker.Web.pdb
 C:\Users\24gas\RiderProjects\WebApplication1\RedWalker.Web\obj\Debug\net6.0\RedWalker.Web.genruntimeconfig.cache
 C:\Users\24gas\RiderProjects\WebApplication1\RedWalker.Web\obj\Debug\net6.0\ref\RedWalker.Web.dll
+C:\Users\24gas\RiderProjects\WebApplication1\RedWalker.Web\bin\Debug\net6.0\Microsoft.Extensions.Http.dll
