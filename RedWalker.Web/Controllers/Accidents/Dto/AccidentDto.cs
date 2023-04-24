@@ -20,7 +20,7 @@ namespace WebApplication.Controllers.Accidents.Dto
         public string RoadWay { get; set; } //состояние дороги
         public string SceneAccident { get; set; } //место происшествия
         public string Weather { get; set; } //погода 
-        
+      
     }
 }
 

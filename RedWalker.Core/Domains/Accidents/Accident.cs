@@ -22,5 +22,6 @@ namespace RedWalker.Core.Domains.Accidents
         public Directory RoadWayDirectory { get; set; } //состояние дороги
         public Directory SceneAccidentDirectory { get; set; } //место происшествия
         public Directory WeatherDirectory { get; set; } //погода 
+        public bool DarkTime { get; set; } //флаг темное время суток
     }
 }

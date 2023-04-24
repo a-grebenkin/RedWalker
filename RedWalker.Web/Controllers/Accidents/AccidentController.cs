@@ -32,17 +32,17 @@ namespace RedWalker.Web.Controllers.Accidents
                 DateTime = accident.DateTime,
                 Death = accident.Death,
                 Lat = accident.Lat,
-                Lighting = accident.LightingDirectory.Name,
+                Lighting = accident.LightingDirectory.Id,
                 Lon = accident.Lon,
                 Precip = accident.Precip,
-                RoadWay = accident.RoadWayDirectory.Name,
+                RoadWay = accident.RoadWayDirectory.Id,
                 Wounded = accident.Wounded,
-                AccidentType = accident.TypeDirectory.Name,
+                AccidentType = accident.TypeDirectory.Id,
                 Temperature = accident.Temperature,
                 Visibility = accident.Visibility,
                 Windspeed = accident.Windspeed,
-                SceneAccident = accident.SceneAccidentDirectory.Name,
-                Weather = accident.WeatherDirectory.Name
+                SceneAccident = accident.SceneAccidentDirectory.Id,
+                Weather = accident.WeatherDirectory.Id
             });
         }
         

@@ -4,7 +4,7 @@ namespace RedWalker.Core.Domains.Weathers;
 
 public class WeatherApproximator : IWeatherApproximator
 {
-    private const double maxError = 0.005;
+    private const double maxError = 0.01;
     
     private const double maxTempDiff = 100;
     private const double maxCloudDiff = 100;

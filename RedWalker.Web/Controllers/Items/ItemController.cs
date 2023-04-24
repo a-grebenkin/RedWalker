@@ -80,7 +80,7 @@ namespace RedWalker.Web.Controllers.Items
                     AccidentType = accident.TypeDirectory.Id,
                     Lighting = accident.LightingDirectory.Id,
                     RoadWay = accident.RoadWayDirectory.Id,
-                    Weather = accident.WeatherDirectory.Id,
+                    Weather = accident.WeatherDirectory.Id
                 }).ToList()
             });
         }

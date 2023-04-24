@@ -26,7 +26,8 @@ public class WeatherController:ControllerBase
             Cloudcover = weather.Cloudcover,
             Precip = weather.Precip,
             Visibility = weather.Visibility,
-            Windspeed = weather.Windspeed
+            Windspeed = weather.Windspeed,
+            WeatherCondition = weather.WeatherCondition
         };
     }
 }

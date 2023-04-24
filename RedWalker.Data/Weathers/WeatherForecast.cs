@@ -29,14 +29,20 @@ public class WeatherForecast:IWeatherForecast
             Windspeed = 3
         };
         */
+        if (!WeatherConstants.CodeToWeatherCondition.TryGetValue(response.data.current_condition[0].weatherCode, out WeatherConstants.WeatherCondition weatherCondtion))
+        {
+            weatherCondtion = WeatherConstants.WeatherCondition.Other;
+        }
         var weather = new Weather
         {
             Temperature = response.data.current_condition[0].temp_C,
             Cloudcover = response.data.current_condition[0].cloudcover,
             Precip = response.data.current_condition[0].precipMM,
             Visibility = response.data.current_condition[0].visibility,
-            Windspeed = response.data.current_condition[0].windspeedKmph
+            Windspeed = response.data.current_condition[0].windspeedKmph,
+            WeatherCondition = weatherCondtion.ToString()
         };
+        
 
         return weather;
     }

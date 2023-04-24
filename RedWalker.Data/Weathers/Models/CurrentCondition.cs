@@ -7,4 +7,5 @@ public class CurrentCondition
     public double precipMM { get; set; }
     public int visibility { get; set; }
     public int cloudcover { get; set; }
+    public string weatherCode { get; set; }
 }

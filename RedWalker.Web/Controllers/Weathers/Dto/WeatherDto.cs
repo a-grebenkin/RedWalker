@@ -7,4 +7,5 @@ public class WeatherDto
     public int Visibility { get; set; } //видимость км
     public int Windspeed { get; set; } //скорость ветра км/ч
     public int Cloudcover { get; set; } //облачность %
+    public string WeatherCondition { get; set; }
 }
