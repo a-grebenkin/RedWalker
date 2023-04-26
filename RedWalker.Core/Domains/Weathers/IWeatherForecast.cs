@@ -4,5 +4,5 @@ namespace RedWalker.Core.Domains.Weathers;
 
 public interface IWeatherForecast
 {
-    public Task<Weather> GetForecast(double lat, double lon);
+    public Task<WeatherModel> GetForecast(double lat, double lon);
 }

@@ -63,7 +63,9 @@ public class AccidentRepository:IAccidentRepository
             {
                 Id = accident.WeatherCondition.StringId,
                 Name = accident.WeatherCondition.Name
-            }
+            },
+            TimeSunrise = accident.TimeSunrise,
+            TimeSunset = accident.TimeSunset
         }).ToListAsync();
     }
 
@@ -120,7 +122,9 @@ public class AccidentRepository:IAccidentRepository
             {
                 Id = accident.WeatherCondition.StringId,
                 Name = accident.WeatherCondition.Name
-            }
+            },
+            TimeSunrise = accident.TimeSunrise,
+            TimeSunset = accident.TimeSunset
         };
     }
 }

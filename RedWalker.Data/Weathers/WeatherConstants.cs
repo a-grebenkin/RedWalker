@@ -4,7 +4,8 @@ public static class WeatherConstants
 {
     public enum WeatherCondition
     {
-        Clear,  //Ясно
+        ClearDayLight,  //Ясно светлое время суток
+        ClearDarkTime, //Ясно темное время суток
         Cloudy, //Пасмурно 
         Rain,   //Дождь
         Fog,    //Туман
@@ -15,7 +16,7 @@ public static class WeatherConstants
 
     public static readonly Dictionary<string, WeatherCondition> CodeToWeatherCondition = new()
         {
-            {"113",WeatherCondition.Clear},
+            {"113",WeatherCondition.ClearDayLight},
             {"116",WeatherCondition.Cloudy},
             {"119",WeatherCondition.Cloudy},
             {"122",WeatherCondition.Cloudy},
@@ -24,7 +25,7 @@ public static class WeatherConstants
             {"179",WeatherCondition.Snowfall},
             {"182",WeatherCondition.Snowfall},
             {"185",WeatherCondition.Snowfall},
-            {"200",WeatherCondition.Clear},
+            {"200",WeatherCondition.ClearDayLight},
             {"227",WeatherCondition.Snowstorm},
             {"230",WeatherCondition.Snowstorm},
             {"248",WeatherCondition.Fog},

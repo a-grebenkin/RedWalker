@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -16,11 +17,11 @@ public class WeatherForecast:IWeatherForecast
     {
         _httpClient = httpClient;
     }
-    public async Task<Weather> GetForecast(double lat, double lon)
+    public async Task<WeatherModel> GetForecast(double lat, double lon)
     {
         string url = String.Format($"?q={lat},{lon}") +  String.Format($"&key={keyWeather}") + "&format=json";
         var response = await _httpClient.GetFromJsonAsync<Response>(url);
-        /*var weather = new Weather
+        /*var weather = new WeatherModel
         {
             Temperature = 25,
             Cloudcover = 100,
@@ -33,16 +34,24 @@ public class WeatherForecast:IWeatherForecast
         {
             weatherCondtion = WeatherConstants.WeatherCondition.Other;
         }
-        var weather = new Weather
+        
+        var weather = new WeatherModel
         {
             Temperature = response.data.current_condition[0].temp_C,
             Cloudcover = response.data.current_condition[0].cloudcover,
             Precip = response.data.current_condition[0].precipMM,
             Visibility = response.data.current_condition[0].visibility,
             Windspeed = response.data.current_condition[0].windspeedKmph,
-            WeatherCondition = weatherCondtion.ToString()
+            WeatherCondition = weatherCondtion.ToString(),
+            TimeSunrise =  DateTime.ParseExact(response.data.weather[0].astronomy[0].sunrise, "hh:mm tt", CultureInfo.InvariantCulture),
+            TimeSunset = DateTime.ParseExact(response.data.weather[0].astronomy[0].sunset, "hh:mm tt", CultureInfo.InvariantCulture)
         };
         
+        if (weather.WeatherCondition == WeatherConstants.WeatherCondition.ClearDayLight.ToString() && 
+            (DateTime.Now < weather.TimeSunrise || DateTime.Now > weather.TimeSunset))
+        {
+            weather.WeatherCondition = WeatherConstants.WeatherCondition.ClearDarkTime.ToString();
+        }
 
         return weather;
     }

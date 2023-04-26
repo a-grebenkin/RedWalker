@@ -40,7 +40,8 @@ namespace RedWalker.Data.Accidents
         [Column("WeatherId")]
         public int WeatherConditionDbModelId { get; set; } //погода 
         public WeatherConditionDbModel WeatherCondition { get; set; } //погода 
-        
+        public DateTime TimeSunrise { get; set; } //время восхода солнца
+        public DateTime TimeSunset { get; set; } //время заката солнца
     }
     internal class ItemConfiguration : IEntityTypeConfiguration<AccidentDbModel>
     {

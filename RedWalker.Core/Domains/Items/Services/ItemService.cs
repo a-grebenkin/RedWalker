@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RedWalker.Core.Domains.Accidents;
 using RedWalker.Core.Domains.GeoCoordinates;
@@ -31,6 +32,7 @@ namespace RedWalker.Core.Domains.Items.Services
             var items = await _itemRepository.GetAllAsync();
             var weatherForecast = await _weatherForecast.GetForecast(lat,lon);
 
+
             var itemsForecast = new List<Item>();
             foreach (var item in items)
             {
@@ -52,15 +54,17 @@ namespace RedWalker.Core.Domains.Items.Services
                         continue;
                     }
                     
-                    var weatherAccident = new Weather
+                    var weatherAccident = new WeatherModel
                     {
                         Temperature = accident.Temperature,
                         Cloudcover = accident.Cloudcover,
                         Precip = accident.Precip,
                         Visibility = accident.Visibility,
-                        Windspeed = accident.Windspeed
+                        Windspeed = accident.Windspeed,
+                        TimeSunrise = accident.TimeSunrise,
+                        TimeSunset = accident.TimeSunset
                     };
-                    if (!_weatherApproximator.Approximate(weatherAccident, weatherForecast))
+                    if (!_weatherApproximator.Approximate(weatherAccident, weatherForecast, accident.DateTime, DateTime.Now))
                     {
                         continue;
                     }

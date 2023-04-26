@@ -77,7 +77,9 @@ namespace RedWalker.Data.Items.Repositories
                     {
                         Id = accident.WeatherCondition.StringId,
                         Name = accident.WeatherCondition.Name
-                    }
+                    },
+                    TimeSunrise = accident.TimeSunrise,
+                    TimeSunset = accident.TimeSunset
                 }).ToList()
 
             }).ToListAsync();
