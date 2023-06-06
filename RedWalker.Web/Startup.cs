@@ -37,7 +37,7 @@ namespace RedWalker.Web
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RedWalker.Web", Version = "v1" });
             });
             services.AddScoped<IWeatherForecast, WeatherForecast>();
-            services.AddScoped<IWeatherApproximator, WeatherApproximator>();
+            services.AddScoped<IConditionApproximator, ConditionApproximator>();
             services.AddScoped<IGeoCoordinatesComparer, GeoCoordinatesComparer>();
             services.AddCore();
             services.AddData(Configuration);

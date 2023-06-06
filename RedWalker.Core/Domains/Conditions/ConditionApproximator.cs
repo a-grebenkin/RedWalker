@@ -1,8 +1,9 @@
 ﻿using System;
+using System.IO;
 
 namespace RedWalker.Core.Domains.Weathers;
 
-public class WeatherApproximator : IWeatherApproximator
+public class ConditionApproximator : IConditionApproximator
 {
     private const double maxError = 0.025;
     
@@ -72,6 +73,11 @@ public class WeatherApproximator : IWeatherApproximator
         var timeDiffStand = diffStandIntervalSunrise < diffStandIntervalSunset ? diffStandIntervalSunrise : diffStandIntervalSunset;
         
         var error = tempDiffStand + cloudDiffStand + precipDiffStand + visibilDiffStand + windDiffStand + timeDiffStand;
+        using (var writer = new StreamWriter("log.txt",append: true))
+        {
+            writer.WriteLine(error);
+        }
+
         if (error > maxError)
         {
             return false;

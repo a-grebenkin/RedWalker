@@ -12,14 +12,14 @@ namespace RedWalker.Core.Domains.Items.Services
     {
         private readonly IItemRepository _itemRepository;
         private readonly IWeatherForecast _weatherForecast;
-        private readonly IWeatherApproximator _weatherApproximator;
+        private readonly IConditionApproximator _conditionApproximator;
         private readonly IGeoCoordinatesComparer _coordinatesComparer;
 
-        public ItemService(IItemRepository itemRepository, IWeatherForecast weatherForecast, IWeatherApproximator weatherApproximator, IGeoCoordinatesComparer coordinatesComparer)
+        public ItemService(IItemRepository itemRepository, IWeatherForecast weatherForecast, IConditionApproximator conditionApproximator, IGeoCoordinatesComparer coordinatesComparer)
         {
             _itemRepository = itemRepository;
             _weatherForecast = weatherForecast;
-            _weatherApproximator = weatherApproximator;
+            _conditionApproximator = conditionApproximator;
             _coordinatesComparer = coordinatesComparer;
         }
         public Task<List<Item>> GetAllAsync()
@@ -64,7 +64,7 @@ namespace RedWalker.Core.Domains.Items.Services
                         TimeSunrise = accident.TimeSunrise,
                         TimeSunset = accident.TimeSunset
                     };
-                    if (!_weatherApproximator.Approximate(weatherAccident, weatherForecast, accident.DateTime, DateTime.Now))
+                    if (!_conditionApproximator.Approximate(weatherAccident, weatherForecast, accident.DateTime, DateTime.Now))
                     {
                         continue;
                     }
