@@ -18,7 +18,7 @@ namespace RedWalker.Web.Controllers.Accidents
         {
             _accidentService = accidentService;
         }
-
+/*
         [HttpGet]
         public async Task<IEnumerable<AccidentDto>> GetAll()
         {
@@ -45,7 +45,7 @@ namespace RedWalker.Web.Controllers.Accidents
                 Weather = accident.WeatherDirectory.Id
             });
         }
-        
+     */   
         [HttpGet("{id}")]
         public async Task<AccidentDto> GetById(int id)
         {

@@ -5,6 +5,7 @@ using RedWalker.Core.Domains.Accidents;
 using RedWalker.Core.Domains.GeoCoordinates;
 using RedWalker.Core.Domains.Items.Repositories;
 using RedWalker.Core.Domains.Weathers;
+using RedWalker.Core.Paginates;
 
 namespace RedWalker.Core.Domains.Items.Services
 {
@@ -27,6 +28,10 @@ namespace RedWalker.Core.Domains.Items.Services
             return _itemRepository.GetAllAsync();
         }
 
+        public PagedList<Item> GetPaginated(PaginateParametrs paginateParametrs)
+        {
+            return _itemRepository.GetPaginated(paginateParametrs);
+        }
         public async Task<List<Item>> GetForecastByLatLonRad(double lat, double lon, double radKm)
         {
             var items = await _itemRepository.GetAllAsync();
