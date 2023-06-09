@@ -8,7 +8,7 @@ public class ConditionApproximator : IConditionApproximator
     private const double diffWeatherCondition = 100;
         
     private const double maxTempDiff = 100;
-    private const double tempWeight = 5;
+    private const double tempWeight = 3;
     private const double maxCloudDiff = 100;
     private const double maxVisibilDiff = 10;
     private const double maxPrecipDiff = 15;

@@ -47,7 +47,7 @@ namespace RedWalker.Core.Domains.Items.Services
                 Lat = lat,
                 Lon = lon
             };
-            
+
             foreach (var item in items)
             {
                 foreach (var accident in item.Accidents)
@@ -64,7 +64,7 @@ namespace RedWalker.Core.Domains.Items.Services
                         TimeSunset = accident.TimeSunset
                     };
                     scores.Add(_conditionApproximator.Approximate(
-                        weatherAccident, weatherForecast, accident.DateTime, DateTime.Now));
+                        weatherAccident, weatherForecast, accident.DateTime, TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now,"N. Central Asia Standard Time")));
                 }
             }
             
