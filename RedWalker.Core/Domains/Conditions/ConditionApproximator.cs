@@ -8,6 +8,7 @@ public class ConditionApproximator : IConditionApproximator
     private const double diffWeatherCondition = 100;
         
     private const double maxTempDiff = 100;
+    private const double tempWeight = 5;
     private const double maxCloudDiff = 100;
     private const double maxVisibilDiff = 10;
     private const double maxPrecipDiff = 15;
@@ -76,7 +77,7 @@ public class ConditionApproximator : IConditionApproximator
         var diffStandIntervalSunset = Math.Pow(standIntervalSunset1 - standIntervalSunset2,2);
         var timeDiffStand = diffStandIntervalSunrise < diffStandIntervalSunset ? diffStandIntervalSunrise : diffStandIntervalSunset;
         
-        var error = tempDiffStand + cloudDiffStand + precipDiffStand + visibilDiffStand + windDiffStand + timeDiffStand;
+        var error = tempDiffStand*tempWeight + cloudDiffStand + precipDiffStand + visibilDiffStand + windDiffStand + timeDiffStand;
         using (var writer = new StreamWriter("log1.txt",append: true))
         {
             writer.WriteLine(error);
