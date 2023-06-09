@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using RedWalker.Core.Domains.Accidents;
 using RedWalker.Core.Domains.GeoCoordinates;
@@ -15,6 +16,8 @@ namespace RedWalker.Core.Domains.Items.Services
         private readonly IWeatherForecast _weatherForecast;
         private readonly IConditionApproximator _conditionApproximator;
         private readonly IGeoCoordinatesComparer _coordinatesComparer;
+        
+        private const int MaxCount = 50;
 
         public ItemService(IItemRepository itemRepository, IWeatherForecast weatherForecast, IConditionApproximator conditionApproximator, IGeoCoordinatesComparer coordinatesComparer)
         {
@@ -36,12 +39,10 @@ namespace RedWalker.Core.Domains.Items.Services
         {
             var items = await _itemRepository.GetAllAsync();
             var weatherForecast = await _weatherForecast.GetForecast(lat,lon);
-
-
-            var itemsForecast = new List<Item>();
+            
+            var scores = new List<double>();
             foreach (var item in items)
             {
-                var accidentsForecast = new List<Accident>();
                 foreach (var accident in item.Accidents)
                 {
                     var geoCoordinate1 = new GeoCoordinate
@@ -61,6 +62,7 @@ namespace RedWalker.Core.Domains.Items.Services
                     
                     var weatherAccident = new WeatherModel
                     {
+                        WeatherCondition = accident.WeatherDirectory.Id,
                         Temperature = accident.Temperature,
                         Cloudcover = accident.Cloudcover,
                         Precip = accident.Precip,
@@ -69,21 +71,33 @@ namespace RedWalker.Core.Domains.Items.Services
                         TimeSunrise = accident.TimeSunrise,
                         TimeSunset = accident.TimeSunset
                     };
-                    if (!_conditionApproximator.Approximate(weatherAccident, weatherForecast, accident.DateTime, DateTime.Now))
-                    {
-                        continue;
-                    }
-                    accidentsForecast.Add(accident);
-                }
-
-                if (accidentsForecast.Count > 0)
-                {
-                    var itemForecast = item;
-                    itemForecast.Accidents = accidentsForecast;
-                    itemsForecast.Add(itemForecast);
+                    scores.Add(_conditionApproximator.Approximate(
+                        weatherAccident, weatherForecast, accident.DateTime, DateTime.Now));
                 }
             }
-            return itemsForecast;
+            
+            var thresholdScore = scores.OrderBy(x=>x).Take(MaxCount).Last();
+            return items.Select(x => new Item
+            {
+                Id = x.Id,
+                Type = x.Type,
+                Lat = x.Lat,
+                Lon = x.Lon,
+                RLat = x.RLat,
+                RLon = x.RLon,
+                Accidents = x.Accidents.Where(accident => _conditionApproximator.Approximate(
+                    new WeatherModel
+                    {
+                        WeatherCondition = accident.WeatherDirectory.Id,
+                        Temperature = accident.Temperature,
+                        Cloudcover = accident.Cloudcover,
+                        Precip = accident.Precip,
+                        Visibility = accident.Visibility,
+                        Windspeed = accident.Windspeed,
+                        TimeSunrise = accident.TimeSunrise,
+                        TimeSunset = accident.TimeSunset
+                    }, weatherForecast, accident.DateTime, DateTime.Now) <= thresholdScore).ToList(),
+            }).Where(x => x.Accidents.Any()).Take(MaxCount).ToList();
         }
     }
 }

@@ -5,22 +5,26 @@ namespace RedWalker.Core.Domains.Weathers;
 
 public class ConditionApproximator : IConditionApproximator
 {
-    private const double maxError = 0.025;
-    
+    private const double diffWeatherCondition = 100;
+        
     private const double maxTempDiff = 100;
     private const double maxCloudDiff = 100;
     private const double maxVisibilDiff = 10;
     private const double maxPrecipDiff = 15;
-    private const double macWindDiff = 100;
+    private const double maxWindDiff = 100;
     private double DiffStand(double value1, double value2, double maxValue) => Math.Pow((value1 - value2)/maxValue,2);
     private double DiffStand(double value, double maxValue) => Math.Pow(value/maxValue,2);
-    public bool Approximate(WeatherModel weatherModel1, WeatherModel weatherModel2, DateTime time1, DateTime time2)
+    public double Approximate(WeatherModel weatherModel1, WeatherModel weatherModel2, DateTime time1, DateTime time2)
     {
+        if (weatherModel1.WeatherCondition != weatherModel2.WeatherCondition)
+        {
+            return diffWeatherCondition;
+        }
         var tempDiffStand = DiffStand(weatherModel1.Temperature, weatherModel2.Temperature, maxTempDiff);
         var cloudDiffStand = DiffStand(weatherModel1.Cloudcover, weatherModel2.Cloudcover, maxCloudDiff);
         var precipDiffStand= DiffStand(weatherModel1.Precip, weatherModel2.Precip, maxVisibilDiff);
         var visibilDiffStand = DiffStand(weatherModel1.Visibility, weatherModel2.Visibility, maxPrecipDiff);
-        var windDiffStand = DiffStand(weatherModel1.Windspeed, weatherModel2.Windspeed, macWindDiff);
+        var windDiffStand = DiffStand(weatherModel1.Windspeed, weatherModel2.Windspeed, maxWindDiff);
 
 
         var durationDayMinutes1 = (weatherModel1.TimeSunset - weatherModel1.TimeSunrise).TotalMinutes;
@@ -73,15 +77,10 @@ public class ConditionApproximator : IConditionApproximator
         var timeDiffStand = diffStandIntervalSunrise < diffStandIntervalSunset ? diffStandIntervalSunrise : diffStandIntervalSunset;
         
         var error = tempDiffStand + cloudDiffStand + precipDiffStand + visibilDiffStand + windDiffStand + timeDiffStand;
-        using (var writer = new StreamWriter("log.txt",append: true))
+        using (var writer = new StreamWriter("log1.txt",append: true))
         {
             writer.WriteLine(error);
         }
-
-        if (error > maxError)
-        {
-            return false;
-        }
-        return true;
+        return error;
     }
 }
