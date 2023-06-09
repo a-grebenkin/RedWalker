@@ -48,6 +48,7 @@ namespace RedWalker.Core.Domains.Items.Services
                 Lon = lon
             };
 
+            var dateTimeNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "N. Central Asia Standard Time");
             foreach (var item in items)
             {
                 foreach (var accident in item.Accidents)
@@ -64,7 +65,7 @@ namespace RedWalker.Core.Domains.Items.Services
                         TimeSunset = accident.TimeSunset
                     };
                     scores.Add(_conditionApproximator.Approximate(
-                        weatherAccident, weatherForecast, accident.DateTime, TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now,"N. Central Asia Standard Time")));
+                        weatherAccident, weatherForecast, accident.DateTime, dateTimeNow));
                 }
             }
             
@@ -88,7 +89,7 @@ namespace RedWalker.Core.Domains.Items.Services
                         Windspeed = accident.Windspeed,
                         TimeSunrise = accident.TimeSunrise,
                         TimeSunset = accident.TimeSunset
-                    }, weatherForecast, accident.DateTime, DateTime.Now) <= thresholdScore
+                    }, weatherForecast, accident.DateTime, dateTimeNow) <= thresholdScore
                     && _coordinatesComparer.EnteringAreaByKilometer(
                         new GeoCoordinate
                         {
