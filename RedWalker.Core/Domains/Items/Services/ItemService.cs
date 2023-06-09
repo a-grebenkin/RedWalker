@@ -41,25 +41,17 @@ namespace RedWalker.Core.Domains.Items.Services
             var weatherForecast = await _weatherForecast.GetForecast(lat,lon);
             
             var scores = new List<double>();
+            
+            var geoCoordinate= new GeoCoordinate
+            {
+                Lat = lat,
+                Lon = lon
+            };
+            
             foreach (var item in items)
             {
                 foreach (var accident in item.Accidents)
                 {
-                    var geoCoordinate1 = new GeoCoordinate
-                    {
-                        Lat = accident.Lat,
-                        Lon = accident.Lon
-                    };
-                    var geoCoordinate2= new GeoCoordinate
-                    {
-                        Lat = lat,
-                        Lon = lon
-                    };
-                    if (!_coordinatesComparer.EnteringAreaByKilometer(geoCoordinate1,geoCoordinate2,radKm))
-                    {
-                        continue;
-                    }
-                    
                     var weatherAccident = new WeatherModel
                     {
                         WeatherCondition = accident.WeatherDirectory.Id,
@@ -96,7 +88,15 @@ namespace RedWalker.Core.Domains.Items.Services
                         Windspeed = accident.Windspeed,
                         TimeSunrise = accident.TimeSunrise,
                         TimeSunset = accident.TimeSunset
-                    }, weatherForecast, accident.DateTime, DateTime.Now) <= thresholdScore).ToList(),
+                    }, weatherForecast, accident.DateTime, DateTime.Now) <= thresholdScore
+                    && _coordinatesComparer.EnteringAreaByKilometer(
+                        new GeoCoordinate
+                        {
+                            Lat = accident.Lat,
+                            Lon = accident.Lon
+                        }, 
+                        geoCoordinate, 
+                        radKm)).ToList(),
             }).Where(x => x.Accidents.Any()).Take(MaxCount).ToList();
         }
     }
