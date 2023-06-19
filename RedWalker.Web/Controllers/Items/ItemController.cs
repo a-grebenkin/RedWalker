@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -101,6 +102,7 @@ namespace RedWalker.Web.Controllers.Items
         public async Task<IEnumerable<ItemDto>> GetForecastByLatLonRad(double lat, double lon, double radKm)
         {
             var items =  await _itemService.GetForecastByLatLonRad(lat, lon, radKm);
+            //return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "N. Central Asia Standard Time");
             return items.Select(item => new ItemDto
             {
                 Id = item.Id,

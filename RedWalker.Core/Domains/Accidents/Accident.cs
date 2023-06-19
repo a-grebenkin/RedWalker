@@ -24,5 +24,7 @@ namespace RedWalker.Core.Domains.Accidents
         public Directory WeatherDirectory { get; set; } //погода 
         public DateTime TimeSunrise { get; set; } //время восхода солнца
         public DateTime TimeSunset { get; set; } //время заката солнца
+        public double ProximityValue { get; set; } //мера близости (для сравнения происшествий)
+        public bool DistanceValueFlag { get; set; } //мера растояния (для сравнения происшествий)
     }
 }

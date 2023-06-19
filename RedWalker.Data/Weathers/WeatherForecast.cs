@@ -10,7 +10,7 @@ namespace RedWalker.Data.Weathers;
 
 public class WeatherForecast:IWeatherForecast
 {
-    const string keyWeather = "ae249f490f574833ba040602231705";
+    const string keyWeather = "f3f23b92df7e478ebf8140219231906";
     private readonly HttpClient _httpClient;
 
     public WeatherForecast(HttpClient httpClient)

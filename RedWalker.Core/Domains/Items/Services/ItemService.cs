@@ -40,9 +40,9 @@ namespace RedWalker.Core.Domains.Items.Services
             var items = await _itemRepository.GetAllAsync();
             var weatherForecast = await _weatherForecast.GetForecast(lat,lon);
             
-            var scores = new List<double>();
+            var values = new List<double>();
             
-            var geoCoordinate= new GeoCoordinate
+            var geoCoordinate2= new GeoCoordinate
             {
                 Lat = lat,
                 Lon = lon
@@ -64,12 +64,24 @@ namespace RedWalker.Core.Domains.Items.Services
                         TimeSunrise = accident.TimeSunrise,
                         TimeSunset = accident.TimeSunset
                     };
-                    scores.Add(_conditionApproximator.Approximate(
-                        weatherAccident, weatherForecast, accident.DateTime, dateTimeNow));
+                    var geoCoordinate1 = new GeoCoordinate
+                    {
+                        Lat = accident.Lat,
+                        Lon = accident.Lon
+                    };
+                    
+                    var proximityValue = _conditionApproximator.Approximate(
+                        weatherAccident, weatherForecast, accident.DateTime, dateTimeNow);
+                    var distanceValueFlag = _coordinatesComparer.EnteringAreaByKilometer(geoCoordinate1, geoCoordinate2,radKm);
+                       
+                    accident.ProximityValue = proximityValue;
+                    accident.DistanceValueFlag = distanceValueFlag;
+                    
+                    values.Add(proximityValue);
                 }
             }
             
-            var thresholdScore = scores.OrderBy(x=>x).Take(MaxCount).Last();
+            var thresholdValue = values.OrderBy(x=>x).Take(MaxCount).Last();
             return items.Select(x => new Item
             {
                 Id = x.Id,
@@ -78,26 +90,7 @@ namespace RedWalker.Core.Domains.Items.Services
                 Lon = x.Lon,
                 RLat = x.RLat,
                 RLon = x.RLon,
-                Accidents = x.Accidents.Where(accident => _conditionApproximator.Approximate(
-                    new WeatherModel
-                    {
-                        WeatherCondition = accident.WeatherDirectory.Id,
-                        Temperature = accident.Temperature,
-                        Cloudcover = accident.Cloudcover,
-                        Precip = accident.Precip,
-                        Visibility = accident.Visibility,
-                        Windspeed = accident.Windspeed,
-                        TimeSunrise = accident.TimeSunrise,
-                        TimeSunset = accident.TimeSunset
-                    }, weatherForecast, accident.DateTime, dateTimeNow) <= thresholdScore
-                    && _coordinatesComparer.EnteringAreaByKilometer(
-                        new GeoCoordinate
-                        {
-                            Lat = accident.Lat,
-                            Lon = accident.Lon
-                        }, 
-                        geoCoordinate, 
-                        radKm)).ToList(),
+                Accidents = x.Accidents.Where(accident => accident.ProximityValue <= thresholdValue && accident.DistanceValueFlag).ToList(),
             }).Where(x => x.Accidents.Any()).Take(MaxCount).ToList();
         }
     }
