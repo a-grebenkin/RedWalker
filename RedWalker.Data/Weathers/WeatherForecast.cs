@@ -21,15 +21,6 @@ public class WeatherForecast:IWeatherForecast
     {
         string url = String.Format($"?q={lat},{lon}") +  String.Format($"&key={keyWeather}") + "&format=json";
         var response = await _httpClient.GetFromJsonAsync<Response>(url);
-        /*var weather = new WeatherModel
-        {
-            Temperature = 25,
-            Cloudcover = 100,
-            Precip = 0,
-            Visibility = 5,
-            Windspeed = 3
-        };
-        */
         if (!WeatherConstants.CodeToWeatherCondition.TryGetValue(response.data.current_condition[0].weatherCode, out WeatherConstants.WeatherCondition weatherCondtion))
         {
             weatherCondtion = WeatherConstants.WeatherCondition.Other;
@@ -43,12 +34,12 @@ public class WeatherForecast:IWeatherForecast
             Visibility = response.data.current_condition[0].visibility,
             Windspeed = response.data.current_condition[0].windspeedKmph,
             WeatherCondition = weatherCondtion.ToString(),
-            TimeSunrise =  DateTime.ParseExact(response.data.weather[0].astronomy[0].sunrise, "hh:mm tt", CultureInfo.InvariantCulture),
-            TimeSunset = DateTime.ParseExact(response.data.weather[0].astronomy[0].sunset, "hh:mm tt", CultureInfo.InvariantCulture)
+            TimeSunrise =  DateTime.ParseExact(response.data.weather[0].date +" "+ response.data.weather[0].astronomy[0].sunrise, "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture),
+            TimeSunset = DateTime.ParseExact(response.data.weather[0].date + " "+ response.data.weather[0].astronomy[0].sunset, "yyyy-MM-dd hh:mm tt", CultureInfo.InvariantCulture)
         };
-        
+        var dateTimeNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "N. Central Asia Standard Time");
         if (weather.WeatherCondition == WeatherConstants.WeatherCondition.ClearDayLight.ToString() && 
-            (DateTime.Now < weather.TimeSunrise || DateTime.Now > weather.TimeSunset))
+            (dateTimeNow < weather.TimeSunrise || dateTimeNow > weather.TimeSunset))
         {
             weather.WeatherCondition = WeatherConstants.WeatherCondition.ClearDarkTime.ToString();
         }

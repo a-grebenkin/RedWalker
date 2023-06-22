@@ -102,7 +102,6 @@ namespace RedWalker.Web.Controllers.Items
         public async Task<IEnumerable<ItemDto>> GetForecastByLatLonRad(double lat, double lon, double radKm)
         {
             var items =  await _itemService.GetForecastByLatLonRad(lat, lon, radKm);
-            //return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "N. Central Asia Standard Time");
             return items.Select(item => new ItemDto
             {
                 Id = item.Id,
@@ -130,6 +129,14 @@ namespace RedWalker.Web.Controllers.Items
                     Weather = accident.WeatherDirectory.Id
                 }).ToList()
             });
+        }
+
+        [HttpGet("DateTime")]
+        public DateTime GetDateTime()
+        {
+            return DateTime.ParseExact("2023-06-22 11:59:59,531", "yyyy-MM-dd HH:mm:ss,fff",
+                System.Globalization.CultureInfo.InvariantCulture);
+            //return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, "N. Central Asia Standard Time");
         }
     }
 }
